@@ -1,0 +1,57 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'yarn'
+      - name: Install node_modules
+        run: yarn --check-files --frozen-lockfile --non-interactive
+      - name: Build
+        run: yarn build
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'yarn'
+      - name: Install node_modules
+        run: yarn --check-files --frozen-lockfile --non-interactive
+      - name: Test
+        run: yarn test --ci --coverage
+
+  # ステータスチェック用
+  test-status:
+    needs: [build, test]
+    # スキップ、成功の場合はステータスチェックをパスさせる
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check status
+        run: |
+          if [ '${{ contains(needs.*.result, 'failure') }}' = 'true' ]; then
+            echo 'Failed some tests.'
+            exit 1
+          else
+            echo 'Passed all tests.'
+          fi
