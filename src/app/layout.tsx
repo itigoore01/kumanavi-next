@@ -11,8 +11,8 @@ const mPlusRounded1c = M_PLUS_Rounded_1c({
 });
 
 export const metadata: Metadata = {
-  title: 'Salmon run resume',
-  description: 'Salmon run resume',
+  title: 'クマナビNext',
+  description: 'クマナビNext',
 };
 
 export default function RootLayout({
