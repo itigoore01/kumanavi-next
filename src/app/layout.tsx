@@ -11,8 +11,8 @@ const mPlusRounded1c = M_PLUS_Rounded_1c({
 });
 
 export const metadata: Metadata = {
-  title: 'NextJS app boilerplate',
-  description: 'NextJS app boilerplate',
+  title: 'Salmon run resume',
+  description: 'Salmon run resume',
 };
 
 export default function RootLayout({
