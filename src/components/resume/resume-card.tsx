@@ -20,7 +20,7 @@ export default function ResumeCard({ resume }: Props) {
   );
 
   return (
-    <Card className="font-black">
+    <Card className="font-black @container">
       {/* 最終更新日 */}
       <ResumeUpdatedAt className="text-right" updatedAt={resume.updatedAt} />
 
@@ -50,13 +50,13 @@ export default function ResumeCard({ resume }: Props) {
 
       {/* ステージごとの最高評価 */}
       <div className="mt-8">
-        <ul className="grid grid-cols-2 gap-2">
+        <ul className="grid gap-x-2 gap-y-4 @2xl:grid-cols-2">
           {stages.map((stage) => (
             <li key={stage}>
               <Label id={`resumeMaxPayGradeFor${capitalize(stage)}`}>
                 {getDisplayStage(stage)}
               </Label>
-              <div aria-label={`resumeMaxPayGradeFor${capitalize(stage)}`}>
+              <div aria-labelledby={`resumeMaxPayGradeFor${capitalize(stage)}`}>
                 <FormattedPayGrade
                   payGrade={resume.maxPayGradePerStage[stage]}
                 />
@@ -68,8 +68,10 @@ export default function ResumeCard({ resume }: Props) {
 
       {/* 自己紹介 */}
       <div className="mt-8">
-        <Label>自己紹介</Label>
-        <p className="whitespace-pre-wrap">{resume.biography}</p>
+        <Label id="resumeBiography">自己紹介</Label>
+        <p aria-labelledby="resumeBiography" className="whitespace-pre-wrap">
+          {resume.biography}
+        </p>
       </div>
     </Card>
   );

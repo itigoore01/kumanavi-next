@@ -7,6 +7,10 @@ const ErrorMessage = forwardRef<HTMLDivElement, Props>(function ErrorMessage(
   { children, className, role = 'alert', ...props },
   ref
 ) {
+  if (!children) {
+    return <></>;
+  }
+
   return (
     <div
       ref={ref}
