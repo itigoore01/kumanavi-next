@@ -52,6 +52,7 @@ export default function ResumeMaxPayGradeForm({
           <Input
             type="number"
             className="w-full"
+            aria-label={`${displayStage}の最高評価ポイント`}
             aria-invalid={errors?.point != null}
             aria-errormessage={`resumeFormPointFor${capitalizedStage}Error`}
             {...register(`maxPayGradePerStage.${stage}.point`)}

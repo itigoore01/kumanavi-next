@@ -52,7 +52,7 @@ export async function upsertResume(
   }
 
   const newResume: Resume = {
-    id: '2',
+    id: id ?? '2',
     avatar: null,
     ...resume,
     createdAt: new Date().toISOString(),

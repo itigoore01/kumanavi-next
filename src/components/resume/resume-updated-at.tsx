@@ -28,6 +28,7 @@ export default function ResumeUpdatedAt({
     <div
       {...props}
       className={clsx(className, 'space-x-2 text-xs text-secondary')}
+      aria-label="最終更新日"
     >
       <span>{formattedUpdatedAt}</span>
       <span>現在</span>
