@@ -9,7 +9,7 @@ interface Props {
   };
 }
 
-export async function GET(request: NextRequest, { params }: Props) {
+export function GET(request: NextRequest, { params }: Props) {
   const resume: Resume = {
     id: '1',
     name: 'いか１２３４５６７８',
