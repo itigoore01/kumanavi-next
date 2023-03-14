@@ -9,13 +9,6 @@ interface Props {
   };
 }
 
-const NotoSansJP = (async () => {
-  const response = await fetch(
-    new URL('./NotoSansJP-Black.otf', import.meta.url)
-  );
-  return await response.arrayBuffer();
-})();
-
 export async function GET(request: NextRequest, { params }: Props) {
   const resume: Resume = {
     id: '1',
@@ -35,17 +28,7 @@ export async function GET(request: NextRequest, { params }: Props) {
       <div tw="flex h-full w-full flex-col items-center justify-center bg-slate-900 text-base text-slate-50">
         <OgImageResumeCard resume={resume} />
       </div>
-    ),
-    {
-      fonts: [
-        {
-          name: 'NotoSansJP',
-          data: await NotoSansJP,
-          style: 'normal',
-          weight: 900,
-        },
-      ],
-    }
+    )
   );
 }
 
